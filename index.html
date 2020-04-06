@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Practice</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .strong {
+      color: hotpink;
+    }
+
+    .clicked {
+      background-color: aquamarine;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- <div id="app">
+    {{ message }}
+    <div v-on:click="alertMessage()">{{ message}}</div> -->
+  <!-- #4 메소드 실행 -->
+
+  <!-- <input v-model="message">
+    <textarea v-model="message"></textarea> -->
+  <!-- #5 model 접근 -->
+
+  <!-- <div>{{ reversedMessage }}</div> -->
+  <!-- #6 computed 속성 사용 -->
+
+
+  <!-- <div :class="className">HI!!</div> -->
+  <!-- #1 v-bind 생략 가능 v-bind를 통해 className을 변수로 인식해 치환해준다.  -->
+  <!-- <div v-if="isShow" class="strong"> -->
+  <!-- if값에 따라 렌더링 여부를 결정한다. -->
+  <!-- Show!!
+    </div>
+    <div v-for="item in list" v-bind:key="item"> -->
+  <!--  #2 반복하는 개체가 key값이 중복되지 않도록 주어야 한다..? -->
+  <!-- #3 뷰가 구분해서 인식할 수 있다..? -->
+
+  <!-- {{ item }} -->
+  <!-- </div>
+
+    <button v-bind:class="{ clicked: isClicked }" v-on:click="clickBtn()">
+      버튼
+    </button> -->
+  <!-- 
+    왜 유용하나면
+    여기다가 v-on으로 메소드를 정의해줄 것임 
+    #8 add v-on:click="clickBtn()"
+    isClicked의 true/false에 따라 clicked class를 추가 여부를 결정한다.
+    바닐라 JS로 구현할 때보다 훨씬 간편하다!
+  -->
+  <!-- #7 -->
+  <!-- </div> -->
+
+
+  <!-- ///////////////////////////// new ///////////////////////////// -->
+  <div id="app">
+    <div v-for="movie in movieList" :key="movie.id">
+      <!-- #1 -->
+      <!-- {{ movie.title }} -->
+
+      <div>
+        <a :href="getTrailerLink(movie.yt_trailer_code)" target="_blank">{{ movie.title }}</a>
+      </div>
+      <!-- #4 -->
+
+
+      <!-- <img :src="movie.medium_cover_image" /> -->
+      <!-- #2 -->
+
+      <img @click="fetchDetails(movie.id)" :src="movie.medium_cover_image" width="40%" />
+      <!-- #5 -->
+
+      <div v-for="genre in movie.genres" :key="genre">
+        {{ genre }}
+      </div>
+      <!-- #3 -->
+
+
+      <br>
+      <br>
+      <hr>
+    </div>
+  </div>
+  <!-- 
+    #1 : <영화 타이틀 리스트>key값에는 개체가 들어가면 안된다. 따라서 .id
+    나도 잘은 모르지만 중복값이 있으면 컴파일 과정에서 에러가 나는 것 같다.
+    #2 : <영화 커버 이미지>원래는 그냥 문자가 들어간다. 따라서 v-bind:추가, :로 생략!
+
+    #4 : <유튜브 트레일러 링킹>함수 인자 넘겨줌, 마찬가지로 bind를 해줘야 한다. 
+    #5 : <#2주석, 연관 영화>@로 축약 가능하다는데 뭔지 모르겠다 ㅠㅠ
+  -->
+  <script src="src/js/main.js"></script>
+</body>
+
+</html>
